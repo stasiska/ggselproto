@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "tuzov.sso.v1;ssov1";
+
+
+message RegisterInput {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message LoginInput {
+  string email = 1;
+  string password = 2;
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string picture = 4;
+  string role = 5;
+  bool is_verified = 6;
+  bool is_two_factor_enabled = 7;
+  double balance = 8;
+  string method = 9;
+}
+
+message LoginResponse {
+  User user = 1;
+  string access_token = 2;
+}
+
+message SessionRequest {
+  string session_id = 1;
+}
+
+message SessionResponse {
+  string session_data = 1;
+}
+
+message PasswordRecoveryResetRequest {
+  string email = 1;
+}
+
+message PasswordRecoveryNewRequest {
+  string email = 1;
+  string token = 2;
+  string new_password = 3;
+}
+
+message Res {
+  bool response = 1;
+}
+
+service AuthService {
+  rpc Registration(RegisterInput) returns (User);
+  rpc Login(LoginInput) returns (LoginResponse);
+  rpc Logout(SessionRequest) returns (Res);
+  rpc GetSession(SessionRequest) returns (SessionResponse);
+  rpc PasswordRecoveryReset(PasswordRecoveryResetRequest) returns (Res);
+  rpc PasswordRecoveryNew(PasswordRecoveryNewRequest) returns (Res);
+}
