@@ -1,1 +1,81 @@
 syntax = "proto3";
+
+package product;
+
+option go_package = "stasiska.product.v1;productv1";
+
+
+message Product {
+  string id = 1;
+  string seller_id = 2;          
+  string title = 3;             
+  string description = 4;       
+  double price = 5;              
+  string category = 6;           
+  bool is_sold = 8;              
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+// Запрос на создание продукта
+message CreateProductRequest {
+  string seller_id = 1;
+  string title = 2;
+  string description = 3;
+  double price = 4;
+  string category = 5;
+  repeated string tags = 6;
+}
+
+// Ответ при создании
+message CreateProductResponse {
+  Product product = 1;
+}
+
+// Запрос на получение продукта по ID
+message GetProductRequest {
+  string id = 1;
+}
+
+// Запрос на обновление продукта
+message UpdateProductRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  double price = 4;
+  string category = 5;
+  repeated string tags = 6;
+  bool is_sold = 7;
+}
+
+// Запрос на удаление продукта
+message DeleteProductRequest {
+  string id = 1;
+}
+
+// Запрос на поиск продуктов с фильтрами
+message SearchProductsRequest {
+  string category = 1;
+  string seller_id = 2;
+  bool only_available = 3; // фильтр по is_sold = false
+  int32 limit = 5;
+  int32 offset = 6;
+}
+
+// Ответ на поиск
+message SearchProductsResponse {
+  repeated Product products = 1;
+  int32 total_count = 2;
+}
+
+message Res {
+    bool response = 1;
+}
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc GetProduct(GetProductRequest) returns (Product);
+  rpc UpdateProduct(UpdateProductRequest) returns (Product);
+  rpc DeleteProduct(DeleteProductRequest) returns (Res);
+  rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse);
+}
