@@ -26,6 +26,7 @@ message User {
   bool is_two_factor_enabled = 7;
   double balance = 8;
   string method = 9;
+  string password = 10;
 }
 
 message LoginResponse {

@@ -144,6 +144,7 @@ type User struct {
 	IsTwoFactorEnabled bool                   `protobuf:"varint,7,opt,name=is_two_factor_enabled,json=isTwoFactorEnabled,proto3" json:"is_two_factor_enabled,omitempty"`
 	Balance            float64                `protobuf:"fixed64,8,opt,name=balance,proto3" json:"balance,omitempty"`
 	Method             string                 `protobuf:"bytes,9,opt,name=method,proto3" json:"method,omitempty"`
+	Password           string                 `protobuf:"bytes,10,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -237,6 +238,13 @@ func (x *User) GetBalance() float64 {
 func (x *User) GetMethod() string {
 	if x != nil {
 		return x.Method
+	}
+	return ""
+}
+
+func (x *User) GetPassword() string {
+	if x != nil {
+		return x.Password
 	}
 	return ""
 }
@@ -541,7 +549,7 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"\n" +
 	"LoginInput\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xf4\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x90\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -552,7 +560,9 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"isVerified\x121\n" +
 	"\x15is_two_factor_enabled\x18\a \x01(\bR\x12isTwoFactorEnabled\x12\x18\n" +
 	"\abalance\x18\b \x01(\x01R\abalance\x12\x16\n" +
-	"\x06method\x18\t \x01(\tR\x06method\"T\n" +
+	"\x06method\x18\t \x01(\tR\x06method\x12\x1a\n" +
+	"\bpassword\x18\n" +
+	" \x01(\tR\bpassword\"T\n" +
 	"\rLoginResponse\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
 	".auth.UserR\x04user\x12#\n" +
