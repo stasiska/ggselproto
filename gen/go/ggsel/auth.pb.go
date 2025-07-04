@@ -244,7 +244,7 @@ func (x *User) GetMethod() string {
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	AccessToken   string                 `protobuf:"bytes,2,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -286,9 +286,9 @@ func (x *LoginResponse) GetUser() *User {
 	return nil
 }
 
-func (x *LoginResponse) GetAccessToken() string {
+func (x *LoginResponse) GetRefreshToken() string {
 	if x != nil {
-		return x.AccessToken
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -552,11 +552,11 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"isVerified\x121\n" +
 	"\x15is_two_factor_enabled\x18\a \x01(\bR\x12isTwoFactorEnabled\x12\x18\n" +
 	"\abalance\x18\b \x01(\x01R\abalance\x12\x16\n" +
-	"\x06method\x18\t \x01(\tR\x06method\"R\n" +
+	"\x06method\x18\t \x01(\tR\x06method\"T\n" +
 	"\rLoginResponse\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
-	".auth.UserR\x04user\x12!\n" +
-	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\"/\n" +
+	".auth.UserR\x04user\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"/\n" +
 	"\x0eSessionRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"4\n" +
