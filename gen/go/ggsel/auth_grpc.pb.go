@@ -25,6 +25,7 @@ const (
 	AuthService_GetSession_FullMethodName            = "/auth.AuthService/GetSession"
 	AuthService_PasswordRecoveryReset_FullMethodName = "/auth.AuthService/PasswordRecoveryReset"
 	AuthService_PasswordRecoveryNew_FullMethodName   = "/auth.AuthService/PasswordRecoveryNew"
+	AuthService_EmailConfirm_FullMethodName          = "/auth.AuthService/EmailConfirm"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -37,6 +38,7 @@ type AuthServiceClient interface {
 	GetSession(ctx context.Context, in *SessionRequest, opts ...grpc.CallOption) (*SessionResponse, error)
 	PasswordRecoveryReset(ctx context.Context, in *PasswordRecoveryResetRequest, opts ...grpc.CallOption) (*Res, error)
 	PasswordRecoveryNew(ctx context.Context, in *PasswordRecoveryNewRequest, opts ...grpc.CallOption) (*Res, error)
+	EmailConfirm(ctx context.Context, in *EmailConfirmReq, opts ...grpc.CallOption) (*Res, error)
 }
 
 type authServiceClient struct {
@@ -107,6 +109,16 @@ func (c *authServiceClient) PasswordRecoveryNew(ctx context.Context, in *Passwor
 	return out, nil
 }
 
+func (c *authServiceClient) EmailConfirm(ctx context.Context, in *EmailConfirmReq, opts ...grpc.CallOption) (*Res, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Res)
+	err := c.cc.Invoke(ctx, AuthService_EmailConfirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
@@ -117,6 +129,7 @@ type AuthServiceServer interface {
 	GetSession(context.Context, *SessionRequest) (*SessionResponse, error)
 	PasswordRecoveryReset(context.Context, *PasswordRecoveryResetRequest) (*Res, error)
 	PasswordRecoveryNew(context.Context, *PasswordRecoveryNewRequest) (*Res, error)
+	EmailConfirm(context.Context, *EmailConfirmReq) (*Res, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -144,6 +157,9 @@ func (UnimplementedAuthServiceServer) PasswordRecoveryReset(context.Context, *Pa
 }
 func (UnimplementedAuthServiceServer) PasswordRecoveryNew(context.Context, *PasswordRecoveryNewRequest) (*Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PasswordRecoveryNew not implemented")
+}
+func (UnimplementedAuthServiceServer) EmailConfirm(context.Context, *EmailConfirmReq) (*Res, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EmailConfirm not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -274,6 +290,24 @@ func _AuthService_PasswordRecoveryNew_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_EmailConfirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailConfirmReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).EmailConfirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_EmailConfirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).EmailConfirm(ctx, req.(*EmailConfirmReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +338,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PasswordRecoveryNew",
 			Handler:    _AuthService_PasswordRecoveryNew_Handler,
+		},
+		{
+			MethodName: "EmailConfirm",
+			Handler:    _AuthService_EmailConfirm_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -46,6 +46,10 @@ message PasswordRecoveryResetRequest {
   string email = 1;
 }
 
+message EmailConfirmReq {
+  string token = 1;
+}
+
 message PasswordRecoveryNewRequest {
   string email = 1;
   string token = 2;
@@ -63,4 +67,5 @@ service AuthService {
   rpc GetSession(SessionRequest) returns (SessionResponse);
   rpc PasswordRecoveryReset(PasswordRecoveryResetRequest) returns (Res);
   rpc PasswordRecoveryNew(PasswordRecoveryNewRequest) returns (Res);
+  rpc EmailConfirm(EmailConfirmReq) returns (Res);
 }

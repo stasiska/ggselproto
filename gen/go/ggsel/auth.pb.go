@@ -433,6 +433,50 @@ func (x *PasswordRecoveryResetRequest) GetEmail() string {
 	return ""
 }
 
+type EmailConfirmReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EmailConfirmReq) Reset() {
+	*x = EmailConfirmReq{}
+	mi := &file_ggsel_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EmailConfirmReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmailConfirmReq) ProtoMessage() {}
+
+func (x *EmailConfirmReq) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmailConfirmReq.ProtoReflect.Descriptor instead.
+func (*EmailConfirmReq) Descriptor() ([]byte, []int) {
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *EmailConfirmReq) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 type PasswordRecoveryNewRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -444,7 +488,7 @@ type PasswordRecoveryNewRequest struct {
 
 func (x *PasswordRecoveryNewRequest) Reset() {
 	*x = PasswordRecoveryNewRequest{}
-	mi := &file_ggsel_auth_proto_msgTypes[7]
+	mi := &file_ggsel_auth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -456,7 +500,7 @@ func (x *PasswordRecoveryNewRequest) String() string {
 func (*PasswordRecoveryNewRequest) ProtoMessage() {}
 
 func (x *PasswordRecoveryNewRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_auth_proto_msgTypes[7]
+	mi := &file_ggsel_auth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -469,7 +513,7 @@ func (x *PasswordRecoveryNewRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PasswordRecoveryNewRequest.ProtoReflect.Descriptor instead.
 func (*PasswordRecoveryNewRequest) Descriptor() ([]byte, []int) {
-	return file_ggsel_auth_proto_rawDescGZIP(), []int{7}
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *PasswordRecoveryNewRequest) GetEmail() string {
@@ -502,7 +546,7 @@ type Res struct {
 
 func (x *Res) Reset() {
 	*x = Res{}
-	mi := &file_ggsel_auth_proto_msgTypes[8]
+	mi := &file_ggsel_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -514,7 +558,7 @@ func (x *Res) String() string {
 func (*Res) ProtoMessage() {}
 
 func (x *Res) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_auth_proto_msgTypes[8]
+	mi := &file_ggsel_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -527,7 +571,7 @@ func (x *Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Res.ProtoReflect.Descriptor instead.
 func (*Res) Descriptor() ([]byte, []int) {
-	return file_ggsel_auth_proto_rawDescGZIP(), []int{8}
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Res) GetResponse() bool {
@@ -573,13 +617,15 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"\x0fSessionResponse\x12!\n" +
 	"\fsession_data\x18\x01 \x01(\tR\vsessionData\"4\n" +
 	"\x1cPasswordRecoveryResetRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"k\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"'\n" +
+	"\x0fEmailConfirmReq\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"k\n" +
 	"\x1aPasswordRecoveryNewRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12!\n" +
 	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"!\n" +
 	"\x03Res\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\bR\bresponse2\xe0\x02\n" +
+	"\bresponse\x18\x01 \x01(\bR\bresponse2\x92\x03\n" +
 	"\vAuthService\x12/\n" +
 	"\fRegistration\x12\x13.auth.RegisterInput\x1a\n" +
 	".auth.User\x12.\n" +
@@ -588,7 +634,8 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"\n" +
 	"GetSession\x12\x14.auth.SessionRequest\x1a\x15.auth.SessionResponse\x12F\n" +
 	"\x15PasswordRecoveryReset\x12\".auth.PasswordRecoveryResetRequest\x1a\t.auth.Res\x12B\n" +
-	"\x13PasswordRecoveryNew\x12 .auth.PasswordRecoveryNewRequest\x1a\t.auth.ResB\x14Z\x12tuzov.sso.v1;ssov1b\x06proto3"
+	"\x13PasswordRecoveryNew\x12 .auth.PasswordRecoveryNewRequest\x1a\t.auth.Res\x120\n" +
+	"\fEmailConfirm\x12\x15.auth.EmailConfirmReq\x1a\t.auth.ResB\x14Z\x12tuzov.sso.v1;ssov1b\x06proto3"
 
 var (
 	file_ggsel_auth_proto_rawDescOnce sync.Once
@@ -602,7 +649,7 @@ func file_ggsel_auth_proto_rawDescGZIP() []byte {
 	return file_ggsel_auth_proto_rawDescData
 }
 
-var file_ggsel_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ggsel_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_ggsel_auth_proto_goTypes = []any{
 	(*RegisterInput)(nil),                // 0: auth.RegisterInput
 	(*LoginInput)(nil),                   // 1: auth.LoginInput
@@ -611,8 +658,9 @@ var file_ggsel_auth_proto_goTypes = []any{
 	(*SessionRequest)(nil),               // 4: auth.SessionRequest
 	(*SessionResponse)(nil),              // 5: auth.SessionResponse
 	(*PasswordRecoveryResetRequest)(nil), // 6: auth.PasswordRecoveryResetRequest
-	(*PasswordRecoveryNewRequest)(nil),   // 7: auth.PasswordRecoveryNewRequest
-	(*Res)(nil),                          // 8: auth.Res
+	(*EmailConfirmReq)(nil),              // 7: auth.EmailConfirmReq
+	(*PasswordRecoveryNewRequest)(nil),   // 8: auth.PasswordRecoveryNewRequest
+	(*Res)(nil),                          // 9: auth.Res
 }
 var file_ggsel_auth_proto_depIdxs = []int32{
 	2, // 0: auth.LoginResponse.user:type_name -> auth.User
@@ -621,15 +669,17 @@ var file_ggsel_auth_proto_depIdxs = []int32{
 	4, // 3: auth.AuthService.Logout:input_type -> auth.SessionRequest
 	4, // 4: auth.AuthService.GetSession:input_type -> auth.SessionRequest
 	6, // 5: auth.AuthService.PasswordRecoveryReset:input_type -> auth.PasswordRecoveryResetRequest
-	7, // 6: auth.AuthService.PasswordRecoveryNew:input_type -> auth.PasswordRecoveryNewRequest
-	2, // 7: auth.AuthService.Registration:output_type -> auth.User
-	3, // 8: auth.AuthService.Login:output_type -> auth.LoginResponse
-	8, // 9: auth.AuthService.Logout:output_type -> auth.Res
-	5, // 10: auth.AuthService.GetSession:output_type -> auth.SessionResponse
-	8, // 11: auth.AuthService.PasswordRecoveryReset:output_type -> auth.Res
-	8, // 12: auth.AuthService.PasswordRecoveryNew:output_type -> auth.Res
-	7, // [7:13] is the sub-list for method output_type
-	1, // [1:7] is the sub-list for method input_type
+	8, // 6: auth.AuthService.PasswordRecoveryNew:input_type -> auth.PasswordRecoveryNewRequest
+	7, // 7: auth.AuthService.EmailConfirm:input_type -> auth.EmailConfirmReq
+	2, // 8: auth.AuthService.Registration:output_type -> auth.User
+	3, // 9: auth.AuthService.Login:output_type -> auth.LoginResponse
+	9, // 10: auth.AuthService.Logout:output_type -> auth.Res
+	5, // 11: auth.AuthService.GetSession:output_type -> auth.SessionResponse
+	9, // 12: auth.AuthService.PasswordRecoveryReset:output_type -> auth.Res
+	9, // 13: auth.AuthService.PasswordRecoveryNew:output_type -> auth.Res
+	9, // 14: auth.AuthService.EmailConfirm:output_type -> auth.Res
+	8, // [8:15] is the sub-list for method output_type
+	1, // [1:8] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -646,7 +696,7 @@ func file_ggsel_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ggsel_auth_proto_rawDesc), len(file_ggsel_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
