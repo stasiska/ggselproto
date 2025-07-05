@@ -26,6 +26,8 @@ const (
 	AuthService_PasswordRecoveryReset_FullMethodName = "/auth.AuthService/PasswordRecoveryReset"
 	AuthService_PasswordRecoveryNew_FullMethodName   = "/auth.AuthService/PasswordRecoveryNew"
 	AuthService_EmailConfirm_FullMethodName          = "/auth.AuthService/EmailConfirm"
+	AuthService_OauthCallback_FullMethodName         = "/auth.AuthService/OauthCallback"
+	AuthService_OauthConnect_FullMethodName          = "/auth.AuthService/OauthConnect"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -39,6 +41,8 @@ type AuthServiceClient interface {
 	PasswordRecoveryReset(ctx context.Context, in *PasswordRecoveryResetRequest, opts ...grpc.CallOption) (*Res, error)
 	PasswordRecoveryNew(ctx context.Context, in *PasswordRecoveryNewRequest, opts ...grpc.CallOption) (*Res, error)
 	EmailConfirm(ctx context.Context, in *EmailConfirmReq, opts ...grpc.CallOption) (*Res, error)
+	OauthCallback(ctx context.Context, in *OauthCallbackDto, opts ...grpc.CallOption) (*OauthCallbackRes, error)
+	OauthConnect(ctx context.Context, in *ProviderDto, opts ...grpc.CallOption) (*OauthConnectRes, error)
 }
 
 type authServiceClient struct {
@@ -119,6 +123,26 @@ func (c *authServiceClient) EmailConfirm(ctx context.Context, in *EmailConfirmRe
 	return out, nil
 }
 
+func (c *authServiceClient) OauthCallback(ctx context.Context, in *OauthCallbackDto, opts ...grpc.CallOption) (*OauthCallbackRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OauthCallbackRes)
+	err := c.cc.Invoke(ctx, AuthService_OauthCallback_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) OauthConnect(ctx context.Context, in *ProviderDto, opts ...grpc.CallOption) (*OauthConnectRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OauthConnectRes)
+	err := c.cc.Invoke(ctx, AuthService_OauthConnect_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
@@ -130,6 +154,8 @@ type AuthServiceServer interface {
 	PasswordRecoveryReset(context.Context, *PasswordRecoveryResetRequest) (*Res, error)
 	PasswordRecoveryNew(context.Context, *PasswordRecoveryNewRequest) (*Res, error)
 	EmailConfirm(context.Context, *EmailConfirmReq) (*Res, error)
+	OauthCallback(context.Context, *OauthCallbackDto) (*OauthCallbackRes, error)
+	OauthConnect(context.Context, *ProviderDto) (*OauthConnectRes, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -160,6 +186,12 @@ func (UnimplementedAuthServiceServer) PasswordRecoveryNew(context.Context, *Pass
 }
 func (UnimplementedAuthServiceServer) EmailConfirm(context.Context, *EmailConfirmReq) (*Res, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EmailConfirm not implemented")
+}
+func (UnimplementedAuthServiceServer) OauthCallback(context.Context, *OauthCallbackDto) (*OauthCallbackRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OauthCallback not implemented")
+}
+func (UnimplementedAuthServiceServer) OauthConnect(context.Context, *ProviderDto) (*OauthConnectRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OauthConnect not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -308,6 +340,42 @@ func _AuthService_EmailConfirm_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_OauthCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OauthCallbackDto)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).OauthCallback(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_OauthCallback_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).OauthCallback(ctx, req.(*OauthCallbackDto))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_OauthConnect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProviderDto)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).OauthConnect(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_OauthConnect_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).OauthConnect(ctx, req.(*ProviderDto))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -342,6 +410,14 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EmailConfirm",
 			Handler:    _AuthService_EmailConfirm_Handler,
+		},
+		{
+			MethodName: "OauthCallback",
+			Handler:    _AuthService_OauthCallback_Handler,
+		},
+		{
+			MethodName: "OauthConnect",
+			Handler:    _AuthService_OauthConnect_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

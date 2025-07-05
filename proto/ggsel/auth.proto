@@ -60,6 +60,25 @@ message Res {
   bool response = 1;
 }
 
+message OauthCallbackDto {
+    string code = 1;
+    string provider = 2;
+}
+
+message OauthCallbackRes {
+    string redirectURL = 1;
+    User user = 2;
+}
+
+message providerDto {
+    string provider = 1;
+}
+
+message oauthConnectRes {
+    string url = 1;
+}
+
+
 service AuthService {
   rpc Registration(RegisterInput) returns (User);
   rpc Login(LoginInput) returns (LoginResponse);
@@ -68,4 +87,7 @@ service AuthService {
   rpc PasswordRecoveryReset(PasswordRecoveryResetRequest) returns (Res);
   rpc PasswordRecoveryNew(PasswordRecoveryNewRequest) returns (Res);
   rpc EmailConfirm(EmailConfirmReq) returns (Res);
+  rpc OauthCallback (OauthCallbackDto) returns (OauthCallbackRes);
+  rpc OauthConnect (providerDto) returns (oauthConnectRes);
+   
 }

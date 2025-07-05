@@ -581,6 +581,198 @@ func (x *Res) GetResponse() bool {
 	return false
 }
 
+type OauthCallbackDto struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Provider      string                 `protobuf:"bytes,2,opt,name=provider,proto3" json:"provider,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OauthCallbackDto) Reset() {
+	*x = OauthCallbackDto{}
+	mi := &file_ggsel_auth_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OauthCallbackDto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OauthCallbackDto) ProtoMessage() {}
+
+func (x *OauthCallbackDto) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_auth_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OauthCallbackDto.ProtoReflect.Descriptor instead.
+func (*OauthCallbackDto) Descriptor() ([]byte, []int) {
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *OauthCallbackDto) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *OauthCallbackDto) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+type OauthCallbackRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RedirectURL   string                 `protobuf:"bytes,1,opt,name=redirectURL,proto3" json:"redirectURL,omitempty"`
+	User          *User                  `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OauthCallbackRes) Reset() {
+	*x = OauthCallbackRes{}
+	mi := &file_ggsel_auth_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OauthCallbackRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OauthCallbackRes) ProtoMessage() {}
+
+func (x *OauthCallbackRes) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_auth_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OauthCallbackRes.ProtoReflect.Descriptor instead.
+func (*OauthCallbackRes) Descriptor() ([]byte, []int) {
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *OauthCallbackRes) GetRedirectURL() string {
+	if x != nil {
+		return x.RedirectURL
+	}
+	return ""
+}
+
+func (x *OauthCallbackRes) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type ProviderDto struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Provider      string                 `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProviderDto) Reset() {
+	*x = ProviderDto{}
+	mi := &file_ggsel_auth_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProviderDto) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProviderDto) ProtoMessage() {}
+
+func (x *ProviderDto) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_auth_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProviderDto.ProtoReflect.Descriptor instead.
+func (*ProviderDto) Descriptor() ([]byte, []int) {
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ProviderDto) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+type OauthConnectRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OauthConnectRes) Reset() {
+	*x = OauthConnectRes{}
+	mi := &file_ggsel_auth_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OauthConnectRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OauthConnectRes) ProtoMessage() {}
+
+func (x *OauthConnectRes) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_auth_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OauthConnectRes.ProtoReflect.Descriptor instead.
+func (*OauthConnectRes) Descriptor() ([]byte, []int) {
+	return file_ggsel_auth_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *OauthConnectRes) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
 var File_ggsel_auth_proto protoreflect.FileDescriptor
 
 const file_ggsel_auth_proto_rawDesc = "" +
@@ -625,7 +817,18 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12!\n" +
 	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"!\n" +
 	"\x03Res\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\bR\bresponse2\x92\x03\n" +
+	"\bresponse\x18\x01 \x01(\bR\bresponse\"B\n" +
+	"\x10OauthCallbackDto\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1a\n" +
+	"\bprovider\x18\x02 \x01(\tR\bprovider\"T\n" +
+	"\x10OauthCallbackRes\x12 \n" +
+	"\vredirectURL\x18\x01 \x01(\tR\vredirectURL\x12\x1e\n" +
+	"\x04user\x18\x02 \x01(\v2\n" +
+	".auth.UserR\x04user\")\n" +
+	"\vproviderDto\x12\x1a\n" +
+	"\bprovider\x18\x01 \x01(\tR\bprovider\"#\n" +
+	"\x0foauthConnectRes\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url2\x8d\x04\n" +
 	"\vAuthService\x12/\n" +
 	"\fRegistration\x12\x13.auth.RegisterInput\x1a\n" +
 	".auth.User\x12.\n" +
@@ -635,7 +838,9 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"GetSession\x12\x14.auth.SessionRequest\x1a\x15.auth.SessionResponse\x12F\n" +
 	"\x15PasswordRecoveryReset\x12\".auth.PasswordRecoveryResetRequest\x1a\t.auth.Res\x12B\n" +
 	"\x13PasswordRecoveryNew\x12 .auth.PasswordRecoveryNewRequest\x1a\t.auth.Res\x120\n" +
-	"\fEmailConfirm\x12\x15.auth.EmailConfirmReq\x1a\t.auth.ResB\x14Z\x12tuzov.sso.v1;ssov1b\x06proto3"
+	"\fEmailConfirm\x12\x15.auth.EmailConfirmReq\x1a\t.auth.Res\x12?\n" +
+	"\rOauthCallback\x12\x16.auth.OauthCallbackDto\x1a\x16.auth.OauthCallbackRes\x128\n" +
+	"\fOauthConnect\x12\x11.auth.providerDto\x1a\x15.auth.oauthConnectResB\x14Z\x12tuzov.sso.v1;ssov1b\x06proto3"
 
 var (
 	file_ggsel_auth_proto_rawDescOnce sync.Once
@@ -649,7 +854,7 @@ func file_ggsel_auth_proto_rawDescGZIP() []byte {
 	return file_ggsel_auth_proto_rawDescData
 }
 
-var file_ggsel_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_ggsel_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_ggsel_auth_proto_goTypes = []any{
 	(*RegisterInput)(nil),                // 0: auth.RegisterInput
 	(*LoginInput)(nil),                   // 1: auth.LoginInput
@@ -661,28 +866,37 @@ var file_ggsel_auth_proto_goTypes = []any{
 	(*EmailConfirmReq)(nil),              // 7: auth.EmailConfirmReq
 	(*PasswordRecoveryNewRequest)(nil),   // 8: auth.PasswordRecoveryNewRequest
 	(*Res)(nil),                          // 9: auth.Res
+	(*OauthCallbackDto)(nil),             // 10: auth.OauthCallbackDto
+	(*OauthCallbackRes)(nil),             // 11: auth.OauthCallbackRes
+	(*ProviderDto)(nil),                  // 12: auth.providerDto
+	(*OauthConnectRes)(nil),              // 13: auth.oauthConnectRes
 }
 var file_ggsel_auth_proto_depIdxs = []int32{
-	2, // 0: auth.LoginResponse.user:type_name -> auth.User
-	0, // 1: auth.AuthService.Registration:input_type -> auth.RegisterInput
-	1, // 2: auth.AuthService.Login:input_type -> auth.LoginInput
-	4, // 3: auth.AuthService.Logout:input_type -> auth.SessionRequest
-	4, // 4: auth.AuthService.GetSession:input_type -> auth.SessionRequest
-	6, // 5: auth.AuthService.PasswordRecoveryReset:input_type -> auth.PasswordRecoveryResetRequest
-	8, // 6: auth.AuthService.PasswordRecoveryNew:input_type -> auth.PasswordRecoveryNewRequest
-	7, // 7: auth.AuthService.EmailConfirm:input_type -> auth.EmailConfirmReq
-	2, // 8: auth.AuthService.Registration:output_type -> auth.User
-	3, // 9: auth.AuthService.Login:output_type -> auth.LoginResponse
-	9, // 10: auth.AuthService.Logout:output_type -> auth.Res
-	5, // 11: auth.AuthService.GetSession:output_type -> auth.SessionResponse
-	9, // 12: auth.AuthService.PasswordRecoveryReset:output_type -> auth.Res
-	9, // 13: auth.AuthService.PasswordRecoveryNew:output_type -> auth.Res
-	9, // 14: auth.AuthService.EmailConfirm:output_type -> auth.Res
-	8, // [8:15] is the sub-list for method output_type
-	1, // [1:8] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2,  // 0: auth.LoginResponse.user:type_name -> auth.User
+	2,  // 1: auth.OauthCallbackRes.user:type_name -> auth.User
+	0,  // 2: auth.AuthService.Registration:input_type -> auth.RegisterInput
+	1,  // 3: auth.AuthService.Login:input_type -> auth.LoginInput
+	4,  // 4: auth.AuthService.Logout:input_type -> auth.SessionRequest
+	4,  // 5: auth.AuthService.GetSession:input_type -> auth.SessionRequest
+	6,  // 6: auth.AuthService.PasswordRecoveryReset:input_type -> auth.PasswordRecoveryResetRequest
+	8,  // 7: auth.AuthService.PasswordRecoveryNew:input_type -> auth.PasswordRecoveryNewRequest
+	7,  // 8: auth.AuthService.EmailConfirm:input_type -> auth.EmailConfirmReq
+	10, // 9: auth.AuthService.OauthCallback:input_type -> auth.OauthCallbackDto
+	12, // 10: auth.AuthService.OauthConnect:input_type -> auth.providerDto
+	2,  // 11: auth.AuthService.Registration:output_type -> auth.User
+	3,  // 12: auth.AuthService.Login:output_type -> auth.LoginResponse
+	9,  // 13: auth.AuthService.Logout:output_type -> auth.Res
+	5,  // 14: auth.AuthService.GetSession:output_type -> auth.SessionResponse
+	9,  // 15: auth.AuthService.PasswordRecoveryReset:output_type -> auth.Res
+	9,  // 16: auth.AuthService.PasswordRecoveryNew:output_type -> auth.Res
+	9,  // 17: auth.AuthService.EmailConfirm:output_type -> auth.Res
+	11, // 18: auth.AuthService.OauthCallback:output_type -> auth.OauthCallbackRes
+	13, // 19: auth.AuthService.OauthConnect:output_type -> auth.oauthConnectRes
+	11, // [11:20] is the sub-list for method output_type
+	2,  // [2:11] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_ggsel_auth_proto_init() }
@@ -696,7 +910,7 @@ func file_ggsel_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ggsel_auth_proto_rawDesc), len(file_ggsel_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
