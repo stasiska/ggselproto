@@ -635,7 +635,7 @@ func (x *OauthCallbackDto) GetProvider() string {
 
 type OauthCallbackRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RedirectURL   string                 `protobuf:"bytes,1,opt,name=redirectURL,proto3" json:"redirectURL,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	User          *User                  `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -671,9 +671,9 @@ func (*OauthCallbackRes) Descriptor() ([]byte, []int) {
 	return file_ggsel_auth_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *OauthCallbackRes) GetRedirectURL() string {
+func (x *OauthCallbackRes) GetRefreshToken() string {
 	if x != nil {
-		return x.RedirectURL
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -820,9 +820,9 @@ const file_ggsel_auth_proto_rawDesc = "" +
 	"\bresponse\x18\x01 \x01(\bR\bresponse\"B\n" +
 	"\x10OauthCallbackDto\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1a\n" +
-	"\bprovider\x18\x02 \x01(\tR\bprovider\"T\n" +
-	"\x10OauthCallbackRes\x12 \n" +
-	"\vredirectURL\x18\x01 \x01(\tR\vredirectURL\x12\x1e\n" +
+	"\bprovider\x18\x02 \x01(\tR\bprovider\"W\n" +
+	"\x10OauthCallbackRes\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\v2\n" +
 	".auth.UserR\x04user\")\n" +
 	"\vproviderDto\x12\x1a\n" +
