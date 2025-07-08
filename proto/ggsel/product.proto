@@ -17,7 +17,6 @@ message Product {
   string updated_at = 10;
 }
 
-// Запрос на создание продукта
 message CreateProductRequest {
   string seller_id = 1;
   string title = 2;
@@ -27,17 +26,18 @@ message CreateProductRequest {
   repeated string tags = 6;
 }
 
-// Ответ при создании
 message CreateProductResponse {
   Product product = 1;
 }
 
-// Запрос на получение продукта по ID
 message GetProductRequest {
   string id = 1;
 }
 
-// Запрос на обновление продукта
+message GetProductBySellerIdRequest {
+  string sellerId = 1;
+}
+
 message UpdateProductRequest {
   string id = 1;
   string title = 2;
@@ -48,22 +48,19 @@ message UpdateProductRequest {
   bool is_sold = 7;
 }
 
-// Запрос на удаление продукта
 message DeleteProductRequest {
   string id = 1;
 }
 
-// Запрос на поиск продуктов с фильтрами
 message SearchProductsRequest {
   string category = 1;
   string seller_id = 2;
-  bool only_available = 3; // фильтр по is_sold = false
+  bool only_available = 3;
   int32 limit = 5;
   int32 offset = 6;
 }
 
-// Ответ на поиск
-message SearchProductsResponse {
+message ProductsRes {
   repeated Product products = 1;
   int32 total_count = 2;
 }
@@ -72,10 +69,13 @@ message Res {
     bool response = 1;
 }
 
+
+
 service ProductService {
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
   rpc GetProduct(GetProductRequest) returns (Product);
+  rpc GetProductBySellerId(GetProductBySellerIdRequest) returns (ProductsRes);
   rpc UpdateProduct(UpdateProductRequest) returns (Product);
   rpc DeleteProduct(DeleteProductRequest) returns (Res);
-  rpc SearchProducts(SearchProductsRequest) returns (SearchProductsResponse);
+  rpc GetAllProducts(SearchProductsRequest) returns (ProductsRes);
 }

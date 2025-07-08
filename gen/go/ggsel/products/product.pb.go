@@ -129,7 +129,6 @@ func (x *Product) GetUpdatedAt() string {
 	return ""
 }
 
-// Запрос на создание продукта
 type CreateProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SellerId      string                 `protobuf:"bytes,1,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
@@ -214,7 +213,6 @@ func (x *CreateProductRequest) GetTags() []string {
 	return nil
 }
 
-// Ответ при создании
 type CreateProductResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Product       *Product               `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
@@ -259,7 +257,6 @@ func (x *CreateProductResponse) GetProduct() *Product {
 	return nil
 }
 
-// Запрос на получение продукта по ID
 type GetProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -304,7 +301,50 @@ func (x *GetProductRequest) GetId() string {
 	return ""
 }
 
-// Запрос на обновление продукта
+type GetProductBySellerIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SellerId      string                 `protobuf:"bytes,1,opt,name=sellerId,proto3" json:"sellerId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductBySellerIdRequest) Reset() {
+	*x = GetProductBySellerIdRequest{}
+	mi := &file_ggsel_product_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductBySellerIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductBySellerIdRequest) ProtoMessage() {}
+
+func (x *GetProductBySellerIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_product_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductBySellerIdRequest.ProtoReflect.Descriptor instead.
+func (*GetProductBySellerIdRequest) Descriptor() ([]byte, []int) {
+	return file_ggsel_product_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetProductBySellerIdRequest) GetSellerId() string {
+	if x != nil {
+		return x.SellerId
+	}
+	return ""
+}
+
 type UpdateProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -320,7 +360,7 @@ type UpdateProductRequest struct {
 
 func (x *UpdateProductRequest) Reset() {
 	*x = UpdateProductRequest{}
-	mi := &file_ggsel_product_proto_msgTypes[4]
+	mi := &file_ggsel_product_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -332,7 +372,7 @@ func (x *UpdateProductRequest) String() string {
 func (*UpdateProductRequest) ProtoMessage() {}
 
 func (x *UpdateProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_product_proto_msgTypes[4]
+	mi := &file_ggsel_product_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -345,7 +385,7 @@ func (x *UpdateProductRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProductRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProductRequest) Descriptor() ([]byte, []int) {
-	return file_ggsel_product_proto_rawDescGZIP(), []int{4}
+	return file_ggsel_product_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateProductRequest) GetId() string {
@@ -397,7 +437,6 @@ func (x *UpdateProductRequest) GetIsSold() bool {
 	return false
 }
 
-// Запрос на удаление продукта
 type DeleteProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -407,7 +446,7 @@ type DeleteProductRequest struct {
 
 func (x *DeleteProductRequest) Reset() {
 	*x = DeleteProductRequest{}
-	mi := &file_ggsel_product_proto_msgTypes[5]
+	mi := &file_ggsel_product_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -419,7 +458,7 @@ func (x *DeleteProductRequest) String() string {
 func (*DeleteProductRequest) ProtoMessage() {}
 
 func (x *DeleteProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_product_proto_msgTypes[5]
+	mi := &file_ggsel_product_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -432,7 +471,7 @@ func (x *DeleteProductRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProductRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProductRequest) Descriptor() ([]byte, []int) {
-	return file_ggsel_product_proto_rawDescGZIP(), []int{5}
+	return file_ggsel_product_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteProductRequest) GetId() string {
@@ -442,12 +481,11 @@ func (x *DeleteProductRequest) GetId() string {
 	return ""
 }
 
-// Запрос на поиск продуктов с фильтрами
 type SearchProductsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Category      string                 `protobuf:"bytes,1,opt,name=category,proto3" json:"category,omitempty"`
 	SellerId      string                 `protobuf:"bytes,2,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
-	OnlyAvailable bool                   `protobuf:"varint,3,opt,name=only_available,json=onlyAvailable,proto3" json:"only_available,omitempty"` // фильтр по is_sold = false
+	OnlyAvailable bool                   `protobuf:"varint,3,opt,name=only_available,json=onlyAvailable,proto3" json:"only_available,omitempty"`
 	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -456,7 +494,7 @@ type SearchProductsRequest struct {
 
 func (x *SearchProductsRequest) Reset() {
 	*x = SearchProductsRequest{}
-	mi := &file_ggsel_product_proto_msgTypes[6]
+	mi := &file_ggsel_product_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +506,7 @@ func (x *SearchProductsRequest) String() string {
 func (*SearchProductsRequest) ProtoMessage() {}
 
 func (x *SearchProductsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_product_proto_msgTypes[6]
+	mi := &file_ggsel_product_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +519,7 @@ func (x *SearchProductsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchProductsRequest.ProtoReflect.Descriptor instead.
 func (*SearchProductsRequest) Descriptor() ([]byte, []int) {
-	return file_ggsel_product_proto_rawDescGZIP(), []int{6}
+	return file_ggsel_product_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SearchProductsRequest) GetCategory() string {
@@ -519,8 +557,7 @@ func (x *SearchProductsRequest) GetOffset() int32 {
 	return 0
 }
 
-// Ответ на поиск
-type SearchProductsResponse struct {
+type ProductsRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Products      []*Product             `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
@@ -528,21 +565,21 @@ type SearchProductsResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SearchProductsResponse) Reset() {
-	*x = SearchProductsResponse{}
-	mi := &file_ggsel_product_proto_msgTypes[7]
+func (x *ProductsRes) Reset() {
+	*x = ProductsRes{}
+	mi := &file_ggsel_product_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SearchProductsResponse) String() string {
+func (x *ProductsRes) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SearchProductsResponse) ProtoMessage() {}
+func (*ProductsRes) ProtoMessage() {}
 
-func (x *SearchProductsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_product_proto_msgTypes[7]
+func (x *ProductsRes) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_product_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -553,19 +590,19 @@ func (x *SearchProductsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SearchProductsResponse.ProtoReflect.Descriptor instead.
-func (*SearchProductsResponse) Descriptor() ([]byte, []int) {
-	return file_ggsel_product_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use ProductsRes.ProtoReflect.Descriptor instead.
+func (*ProductsRes) Descriptor() ([]byte, []int) {
+	return file_ggsel_product_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *SearchProductsResponse) GetProducts() []*Product {
+func (x *ProductsRes) GetProducts() []*Product {
 	if x != nil {
 		return x.Products
 	}
 	return nil
 }
 
-func (x *SearchProductsResponse) GetTotalCount() int32 {
+func (x *ProductsRes) GetTotalCount() int32 {
 	if x != nil {
 		return x.TotalCount
 	}
@@ -581,7 +618,7 @@ type Res struct {
 
 func (x *Res) Reset() {
 	*x = Res{}
-	mi := &file_ggsel_product_proto_msgTypes[8]
+	mi := &file_ggsel_product_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -593,7 +630,7 @@ func (x *Res) String() string {
 func (*Res) ProtoMessage() {}
 
 func (x *Res) ProtoReflect() protoreflect.Message {
-	mi := &file_ggsel_product_proto_msgTypes[8]
+	mi := &file_ggsel_product_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -606,7 +643,7 @@ func (x *Res) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Res.ProtoReflect.Descriptor instead.
 func (*Res) Descriptor() ([]byte, []int) {
-	return file_ggsel_product_proto_rawDescGZIP(), []int{8}
+	return file_ggsel_product_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Res) GetResponse() bool {
@@ -644,7 +681,9 @@ const file_ggsel_product_proto_rawDesc = "" +
 	"\x15CreateProductResponse\x12*\n" +
 	"\aproduct\x18\x01 \x01(\v2\x10.product.ProductR\aproduct\"#\n" +
 	"\x11GetProductRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xbd\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"9\n" +
+	"\x1bGetProductBySellerIdRequest\x12\x1a\n" +
+	"\bsellerId\x18\x01 \x01(\tR\bsellerId\"\xbd\x01\n" +
 	"\x14UpdateProductRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -660,20 +699,21 @@ const file_ggsel_product_proto_rawDesc = "" +
 	"\tseller_id\x18\x02 \x01(\tR\bsellerId\x12%\n" +
 	"\x0eonly_available\x18\x03 \x01(\bR\ronlyAvailable\x12\x14\n" +
 	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x06 \x01(\x05R\x06offset\"g\n" +
-	"\x16SearchProductsResponse\x12,\n" +
+	"\x06offset\x18\x06 \x01(\x05R\x06offset\"\\\n" +
+	"\vProductsRes\x12,\n" +
 	"\bproducts\x18\x01 \x03(\v2\x10.product.ProductR\bproducts\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"!\n" +
 	"\x03Res\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\bR\bresponse2\xef\x02\n" +
+	"\bresponse\x18\x01 \x01(\bR\bresponse2\xb8\x03\n" +
 	"\x0eProductService\x12N\n" +
 	"\rCreateProduct\x12\x1d.product.CreateProductRequest\x1a\x1e.product.CreateProductResponse\x12:\n" +
 	"\n" +
-	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.Product\x12@\n" +
+	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.Product\x12R\n" +
+	"\x14GetProductBySellerId\x12$.product.GetProductBySellerIdRequest\x1a\x14.product.ProductsRes\x12@\n" +
 	"\rUpdateProduct\x12\x1d.product.UpdateProductRequest\x1a\x10.product.Product\x12<\n" +
-	"\rDeleteProduct\x12\x1d.product.DeleteProductRequest\x1a\f.product.Res\x12Q\n" +
-	"\x0eSearchProducts\x12\x1e.product.SearchProductsRequest\x1a\x1f.product.SearchProductsResponseB\x1fZ\x1dstasiska.product.v1;productv1b\x06proto3"
+	"\rDeleteProduct\x12\x1d.product.DeleteProductRequest\x1a\f.product.Res\x12F\n" +
+	"\x0eGetAllProducts\x12\x1e.product.SearchProductsRequest\x1a\x14.product.ProductsResB\x1fZ\x1dstasiska.product.v1;productv1b\x06proto3"
 
 var (
 	file_ggsel_product_proto_rawDescOnce sync.Once
@@ -687,33 +727,36 @@ func file_ggsel_product_proto_rawDescGZIP() []byte {
 	return file_ggsel_product_proto_rawDescData
 }
 
-var file_ggsel_product_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ggsel_product_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_ggsel_product_proto_goTypes = []any{
-	(*Product)(nil),                // 0: product.Product
-	(*CreateProductRequest)(nil),   // 1: product.CreateProductRequest
-	(*CreateProductResponse)(nil),  // 2: product.CreateProductResponse
-	(*GetProductRequest)(nil),      // 3: product.GetProductRequest
-	(*UpdateProductRequest)(nil),   // 4: product.UpdateProductRequest
-	(*DeleteProductRequest)(nil),   // 5: product.DeleteProductRequest
-	(*SearchProductsRequest)(nil),  // 6: product.SearchProductsRequest
-	(*SearchProductsResponse)(nil), // 7: product.SearchProductsResponse
-	(*Res)(nil),                    // 8: product.Res
+	(*Product)(nil),                     // 0: product.Product
+	(*CreateProductRequest)(nil),        // 1: product.CreateProductRequest
+	(*CreateProductResponse)(nil),       // 2: product.CreateProductResponse
+	(*GetProductRequest)(nil),           // 3: product.GetProductRequest
+	(*GetProductBySellerIdRequest)(nil), // 4: product.GetProductBySellerIdRequest
+	(*UpdateProductRequest)(nil),        // 5: product.UpdateProductRequest
+	(*DeleteProductRequest)(nil),        // 6: product.DeleteProductRequest
+	(*SearchProductsRequest)(nil),       // 7: product.SearchProductsRequest
+	(*ProductsRes)(nil),                 // 8: product.ProductsRes
+	(*Res)(nil),                         // 9: product.Res
 }
 var file_ggsel_product_proto_depIdxs = []int32{
 	0, // 0: product.CreateProductResponse.product:type_name -> product.Product
-	0, // 1: product.SearchProductsResponse.products:type_name -> product.Product
+	0, // 1: product.ProductsRes.products:type_name -> product.Product
 	1, // 2: product.ProductService.CreateProduct:input_type -> product.CreateProductRequest
 	3, // 3: product.ProductService.GetProduct:input_type -> product.GetProductRequest
-	4, // 4: product.ProductService.UpdateProduct:input_type -> product.UpdateProductRequest
-	5, // 5: product.ProductService.DeleteProduct:input_type -> product.DeleteProductRequest
-	6, // 6: product.ProductService.SearchProducts:input_type -> product.SearchProductsRequest
-	2, // 7: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
-	0, // 8: product.ProductService.GetProduct:output_type -> product.Product
-	0, // 9: product.ProductService.UpdateProduct:output_type -> product.Product
-	8, // 10: product.ProductService.DeleteProduct:output_type -> product.Res
-	7, // 11: product.ProductService.SearchProducts:output_type -> product.SearchProductsResponse
-	7, // [7:12] is the sub-list for method output_type
-	2, // [2:7] is the sub-list for method input_type
+	4, // 4: product.ProductService.GetProductBySellerId:input_type -> product.GetProductBySellerIdRequest
+	5, // 5: product.ProductService.UpdateProduct:input_type -> product.UpdateProductRequest
+	6, // 6: product.ProductService.DeleteProduct:input_type -> product.DeleteProductRequest
+	7, // 7: product.ProductService.GetAllProducts:input_type -> product.SearchProductsRequest
+	2, // 8: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
+	0, // 9: product.ProductService.GetProduct:output_type -> product.Product
+	8, // 10: product.ProductService.GetProductBySellerId:output_type -> product.ProductsRes
+	0, // 11: product.ProductService.UpdateProduct:output_type -> product.Product
+	9, // 12: product.ProductService.DeleteProduct:output_type -> product.Res
+	8, // 13: product.ProductService.GetAllProducts:output_type -> product.ProductsRes
+	8, // [8:14] is the sub-list for method output_type
+	2, // [2:8] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -730,7 +773,7 @@ func file_ggsel_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ggsel_product_proto_rawDesc), len(file_ggsel_product_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
