@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "stasiska.payment.v1;paymentpb";
+
+service PaymentService {
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+  
+  rpc GetPaymentStatus(GetPaymentStatusRequest) returns (GetPaymentStatusResponse);
+
+  rpc RefundPayment(RefundPaymentRequest) returns (RefundPaymentResponse);
+}
+
+enum PaymentProvider {
+  PROVIDER_UNSPECIFIED = 0;
+  STRIPE = 1;
+  PAYPAL = 2;
+}
+
+enum PaymentStatus {
+  STATUS_UNKNOWN = 0;
+  PENDING = 1;
+  SUCCEEDED = 2;
+  FAILED = 3;
+  REFUNDED = 4;
+  CANCELED = 5;
+}
+
+message CreatePaymentRequest {
+  string order_id = 1;
+  double amount = 2;
+  string currency = 3;
+  PaymentProvider provider = 4;
+  string customer_email = 5;
+}
+
+message CreatePaymentResponse {
+  string payment_id = 1;
+  string redirect_url = 2; 
+  PaymentStatus status = 3;
+}
+
+message GetPaymentStatusRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentStatusResponse {
+  string payment_id = 1;
+  PaymentStatus status = 2;
+  string provider_response = 3;
+}
+
+message RefundPaymentRequest {
+  string payment_id = 1;
+  double amount = 2;
+}
+
+message RefundPaymentResponse {
+  string refund_id = 1;
+  PaymentStatus status = 2;
+}
