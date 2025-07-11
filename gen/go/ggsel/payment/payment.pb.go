@@ -23,10 +23,9 @@ const (
 
 type CreatePaymentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency      string                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
-	CustomerEmail string                 `protobuf:"bytes,5,opt,name=customer_email,json=customerEmail,proto3" json:"customer_email,omitempty"`
+	Amount        int64                  `protobuf:"varint,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	Currency      string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
+	CustomerEmail string                 `protobuf:"bytes,3,opt,name=customer_email,json=customerEmail,proto3" json:"customer_email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,13 +58,6 @@ func (x *CreatePaymentRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreatePaymentRequest.ProtoReflect.Descriptor instead.
 func (*CreatePaymentRequest) Descriptor() ([]byte, []int) {
 	return file_ggsel_payment_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *CreatePaymentRequest) GetOrderId() string {
-	if x != nil {
-		return x.OrderId
-	}
-	return ""
 }
 
 func (x *CreatePaymentRequest) GetAmount() int64 {
@@ -353,12 +345,11 @@ var File_ggsel_payment_proto protoreflect.FileDescriptor
 
 const file_ggsel_payment_proto_rawDesc = "" +
 	"\n" +
-	"\x13ggsel/payment.proto\x12\apayment\"\x8c\x01\n" +
-	"\x14CreatePaymentRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x03R\x06amount\x12\x1a\n" +
-	"\bcurrency\x18\x03 \x01(\tR\bcurrency\x12%\n" +
-	"\x0ecustomer_email\x18\x05 \x01(\tR\rcustomerEmail\"`\n" +
+	"\x13ggsel/payment.proto\x12\apayment\"q\n" +
+	"\x14CreatePaymentRequest\x12\x16\n" +
+	"\x06amount\x18\x01 \x01(\x03R\x06amount\x12\x1a\n" +
+	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12%\n" +
+	"\x0ecustomer_email\x18\x03 \x01(\tR\rcustomerEmail\"`\n" +
 	"\x15CreatePaymentResponse\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x01 \x01(\tR\tpaymentId\x12\x10\n" +

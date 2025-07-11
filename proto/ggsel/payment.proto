@@ -14,10 +14,9 @@ service PaymentService {
 
 
 message CreatePaymentRequest {
-  string order_id = 1;
-  int64 amount = 2;
-  string currency = 3;
-  string customer_email = 5;
+  int64 amount = 1;
+  string currency = 2;
+  string customer_email = 3;
 }
 
 message CreatePaymentResponse {
