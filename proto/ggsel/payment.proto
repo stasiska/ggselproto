@@ -17,6 +17,7 @@ message CreatePaymentRequest {
   int64 amount = 1;
   string currency = 2;
   string customer_email = 3;
+  string product_id = 4;
 }
 
 message CreatePaymentResponse {

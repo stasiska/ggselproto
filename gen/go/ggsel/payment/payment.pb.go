@@ -26,6 +26,7 @@ type CreatePaymentRequest struct {
 	Amount        int64                  `protobuf:"varint,1,opt,name=amount,proto3" json:"amount,omitempty"`
 	Currency      string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
 	CustomerEmail string                 `protobuf:"bytes,3,opt,name=customer_email,json=customerEmail,proto3" json:"customer_email,omitempty"`
+	ProductId     string                 `protobuf:"bytes,4,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -77,6 +78,13 @@ func (x *CreatePaymentRequest) GetCurrency() string {
 func (x *CreatePaymentRequest) GetCustomerEmail() string {
 	if x != nil {
 		return x.CustomerEmail
+	}
+	return ""
+}
+
+func (x *CreatePaymentRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
 	}
 	return ""
 }
@@ -345,11 +353,13 @@ var File_ggsel_payment_proto protoreflect.FileDescriptor
 
 const file_ggsel_payment_proto_rawDesc = "" +
 	"\n" +
-	"\x13ggsel/payment.proto\x12\apayment\"q\n" +
+	"\x13ggsel/payment.proto\x12\apayment\"\x90\x01\n" +
 	"\x14CreatePaymentRequest\x12\x16\n" +
 	"\x06amount\x18\x01 \x01(\x03R\x06amount\x12\x1a\n" +
 	"\bcurrency\x18\x02 \x01(\tR\bcurrency\x12%\n" +
-	"\x0ecustomer_email\x18\x03 \x01(\tR\rcustomerEmail\"`\n" +
+	"\x0ecustomer_email\x18\x03 \x01(\tR\rcustomerEmail\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x04 \x01(\tR\tproductId\"`\n" +
 	"\x15CreatePaymentResponse\x12\x1d\n" +
 	"\n" +
 	"payment_id\x18\x01 \x01(\tR\tpaymentId\x12\x10\n" +
