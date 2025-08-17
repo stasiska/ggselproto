@@ -4,26 +4,35 @@ package product;
 
 option go_package = "stasiska.product.v1;productv1";
 
+// Категория
+message Category {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
 
+// Товар
 message Product {
   string id = 1;
   string seller_id = 2;          
-  string title = 3;             
+  string title = 3;              
   string description = 4;       
-  double price = 5;              
-  string category = 6;           
+  int32 price = 5;               // int в БД -> int32 в proto
+  string category_id = 6;        // ссылка на категорию
+  int32 count = 7;               // количество
   bool is_sold = 8;              
   string created_at = 9;
   string updated_at = 10;
 }
 
+// Запросы / ответы
 message CreateProductRequest {
   string seller_id = 1;
   string title = 2;
   string description = 3;
-  double price = 4;
-  string category = 5;
-  repeated string tags = 6;
+  int32 price = 4;
+  string category_id = 5;        // теперь category_id вместо name
+  int32 count = 6;
 }
 
 message CreateProductResponse {
@@ -35,16 +44,16 @@ message GetProductRequest {
 }
 
 message GetProductBySellerIdRequest {
-  string sellerId = 1;
+  string seller_id = 1;
 }
 
 message UpdateProductRequest {
   string id = 1;
   string title = 2;
   string description = 3;
-  double price = 4;
-  string category = 5;
-  repeated string tags = 6;
+  int32 price = 4;
+  string category_id = 5;
+  int32 count = 6;
   bool is_sold = 7;
 }
 
@@ -53,11 +62,11 @@ message DeleteProductRequest {
 }
 
 message SearchProductsRequest {
-  string category = 1;
+  string category_id = 1;
   string seller_id = 2;
   bool only_available = 3;
-  int32 limit = 5;
-  int32 offset = 6;
+  int32 limit = 4;
+  int32 offset = 5;
 }
 
 message ProductsRes {
@@ -66,10 +75,8 @@ message ProductsRes {
 }
 
 message Res {
-    bool response = 1;
+  bool response = 1;
 }
-
-
 
 service ProductService {
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
