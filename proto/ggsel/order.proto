@@ -47,9 +47,19 @@ message OrdersResponse {
   repeated Order orders = 1;
 }
 
+message AddItemToOrderRequest {
+  string order_id = 1;
+  string product_id = 2;
+  int32 count = 3;
+  int32 price = 4;
+}
 
+message AddItemToOrderResponse {
+  OrderItem item = 1;
+}
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc AddItemToOrder(AddItemToOrderRequest) returns (AddItemToOrderResponse);
   rpc GetOrderById(GetOrderRequest) returns (GetOrderResponse);
-  rpc AllOrders(OrdersRequest) returns (OrdersResponse);
+  rpc GetOrders(OrdersRequest) returns (OrdersResponse);
 }

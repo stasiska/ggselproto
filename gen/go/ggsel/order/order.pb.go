@@ -445,6 +445,118 @@ func (x *OrdersResponse) GetOrders() []*Order {
 	return nil
 }
 
+type AddItemToOrderRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	ProductId     string                 `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Count         int32                  `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
+	Price         int32                  `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddItemToOrderRequest) Reset() {
+	*x = AddItemToOrderRequest{}
+	mi := &file_ggsel_order_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddItemToOrderRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddItemToOrderRequest) ProtoMessage() {}
+
+func (x *AddItemToOrderRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_order_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddItemToOrderRequest.ProtoReflect.Descriptor instead.
+func (*AddItemToOrderRequest) Descriptor() ([]byte, []int) {
+	return file_ggsel_order_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AddItemToOrderRequest) GetOrderId() string {
+	if x != nil {
+		return x.OrderId
+	}
+	return ""
+}
+
+func (x *AddItemToOrderRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *AddItemToOrderRequest) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *AddItemToOrderRequest) GetPrice() int32 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+type AddItemToOrderResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Item          *OrderItem             `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddItemToOrderResponse) Reset() {
+	*x = AddItemToOrderResponse{}
+	mi := &file_ggsel_order_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddItemToOrderResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddItemToOrderResponse) ProtoMessage() {}
+
+func (x *AddItemToOrderResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_order_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddItemToOrderResponse.ProtoReflect.Descriptor instead.
+func (*AddItemToOrderResponse) Descriptor() ([]byte, []int) {
+	return file_ggsel_order_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *AddItemToOrderResponse) GetItem() *OrderItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
 var File_ggsel_order_proto protoreflect.FileDescriptor
 
 const file_ggsel_order_proto_rawDesc = "" +
@@ -477,11 +589,20 @@ const file_ggsel_order_proto_rawDesc = "" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"6\n" +
 	"\x0eOrdersResponse\x12$\n" +
-	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders2\xcf\x01\n" +
+	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders\"}\n" +
+	"\x15AddItemToOrderRequest\x12\x19\n" +
+	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x02 \x01(\tR\tproductId\x12\x14\n" +
+	"\x05count\x18\x03 \x01(\x05R\x05count\x12\x14\n" +
+	"\x05price\x18\x04 \x01(\x05R\x05price\">\n" +
+	"\x16AddItemToOrderResponse\x12$\n" +
+	"\x04item\x18\x01 \x01(\v2\x10.order.OrderItemR\x04item2\x9e\x02\n" +
 	"\fOrderService\x12D\n" +
-	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\x12?\n" +
+	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\x12M\n" +
+	"\x0eAddItemToOrder\x12\x1c.order.AddItemToOrderRequest\x1a\x1d.order.AddItemToOrderResponse\x12?\n" +
 	"\fGetOrderById\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponse\x128\n" +
-	"\tAllOrders\x12\x14.order.OrdersRequest\x1a\x15.order.OrdersResponseB\x1bZ\x19stasiska.order.v1;orderv1b\x06proto3"
+	"\tGetOrders\x12\x14.order.OrdersRequest\x1a\x15.order.OrdersResponseB\x1bZ\x19stasiska.order.v1;orderv1b\x06proto3"
 
 var (
 	file_ggsel_order_proto_rawDescOnce sync.Once
@@ -495,34 +616,39 @@ func file_ggsel_order_proto_rawDescGZIP() []byte {
 	return file_ggsel_order_proto_rawDescData
 }
 
-var file_ggsel_order_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_ggsel_order_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_ggsel_order_proto_goTypes = []any{
-	(*OrderItem)(nil),           // 0: order.OrderItem
-	(*Order)(nil),               // 1: order.Order
-	(*CreateOrderRequest)(nil),  // 2: order.CreateOrderRequest
-	(*CreateOrderResponse)(nil), // 3: order.CreateOrderResponse
-	(*GetOrderRequest)(nil),     // 4: order.GetOrderRequest
-	(*GetOrderResponse)(nil),    // 5: order.GetOrderResponse
-	(*OrdersRequest)(nil),       // 6: order.OrdersRequest
-	(*OrdersResponse)(nil),      // 7: order.OrdersResponse
+	(*OrderItem)(nil),              // 0: order.OrderItem
+	(*Order)(nil),                  // 1: order.Order
+	(*CreateOrderRequest)(nil),     // 2: order.CreateOrderRequest
+	(*CreateOrderResponse)(nil),    // 3: order.CreateOrderResponse
+	(*GetOrderRequest)(nil),        // 4: order.GetOrderRequest
+	(*GetOrderResponse)(nil),       // 5: order.GetOrderResponse
+	(*OrdersRequest)(nil),          // 6: order.OrdersRequest
+	(*OrdersResponse)(nil),         // 7: order.OrdersResponse
+	(*AddItemToOrderRequest)(nil),  // 8: order.AddItemToOrderRequest
+	(*AddItemToOrderResponse)(nil), // 9: order.AddItemToOrderResponse
 }
 var file_ggsel_order_proto_depIdxs = []int32{
-	0, // 0: order.Order.items:type_name -> order.OrderItem
-	0, // 1: order.CreateOrderRequest.items:type_name -> order.OrderItem
-	1, // 2: order.CreateOrderResponse.order:type_name -> order.Order
-	1, // 3: order.GetOrderResponse.order:type_name -> order.Order
-	1, // 4: order.OrdersResponse.orders:type_name -> order.Order
-	2, // 5: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
-	4, // 6: order.OrderService.GetOrderById:input_type -> order.GetOrderRequest
-	6, // 7: order.OrderService.AllOrders:input_type -> order.OrdersRequest
-	3, // 8: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
-	5, // 9: order.OrderService.GetOrderById:output_type -> order.GetOrderResponse
-	7, // 10: order.OrderService.AllOrders:output_type -> order.OrdersResponse
-	8, // [8:11] is the sub-list for method output_type
-	5, // [5:8] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	0,  // 0: order.Order.items:type_name -> order.OrderItem
+	0,  // 1: order.CreateOrderRequest.items:type_name -> order.OrderItem
+	1,  // 2: order.CreateOrderResponse.order:type_name -> order.Order
+	1,  // 3: order.GetOrderResponse.order:type_name -> order.Order
+	1,  // 4: order.OrdersResponse.orders:type_name -> order.Order
+	0,  // 5: order.AddItemToOrderResponse.item:type_name -> order.OrderItem
+	2,  // 6: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
+	8,  // 7: order.OrderService.AddItemToOrder:input_type -> order.AddItemToOrderRequest
+	4,  // 8: order.OrderService.GetOrderById:input_type -> order.GetOrderRequest
+	6,  // 9: order.OrderService.GetOrders:input_type -> order.OrdersRequest
+	3,  // 10: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
+	9,  // 11: order.OrderService.AddItemToOrder:output_type -> order.AddItemToOrderResponse
+	5,  // 12: order.OrderService.GetOrderById:output_type -> order.GetOrderResponse
+	7,  // 13: order.OrderService.GetOrders:output_type -> order.OrdersResponse
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_ggsel_order_proto_init() }
@@ -536,7 +662,7 @@ func file_ggsel_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ggsel_order_proto_rawDesc), len(file_ggsel_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
