@@ -26,6 +26,7 @@ type Product struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Price         int32                  `protobuf:"varint,3,opt,name=price,proto3" json:"price,omitempty"`
+	Amount        int32                  `protobuf:"varint,4,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -81,10 +82,18 @@ func (x *Product) GetPrice() int32 {
 	return 0
 }
 
+func (x *Product) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
 type CreateProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Price         int32                  `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
+	Amount        int32                  `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,6 +138,13 @@ func (x *CreateProductRequest) GetName() string {
 func (x *CreateProductRequest) GetPrice() int32 {
 	if x != nil {
 		return x.Price
+	}
+	return 0
+}
+
+func (x *CreateProductRequest) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
 	}
 	return 0
 }
@@ -361,18 +377,124 @@ func (x *ListProductsResponse) GetProducts() []*Product {
 	return nil
 }
 
+type DecreaseAmountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Amount        int32                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DecreaseAmountRequest) Reset() {
+	*x = DecreaseAmountRequest{}
+	mi := &file_ggsel_product_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DecreaseAmountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DecreaseAmountRequest) ProtoMessage() {}
+
+func (x *DecreaseAmountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_product_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DecreaseAmountRequest.ProtoReflect.Descriptor instead.
+func (*DecreaseAmountRequest) Descriptor() ([]byte, []int) {
+	return file_ggsel_product_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *DecreaseAmountRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *DecreaseAmountRequest) GetAmount() int32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type DecreaseAmountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Error         string                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DecreaseAmountResponse) Reset() {
+	*x = DecreaseAmountResponse{}
+	mi := &file_ggsel_product_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DecreaseAmountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DecreaseAmountResponse) ProtoMessage() {}
+
+func (x *DecreaseAmountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ggsel_product_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DecreaseAmountResponse.ProtoReflect.Descriptor instead.
+func (*DecreaseAmountResponse) Descriptor() ([]byte, []int) {
+	return file_ggsel_product_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DecreaseAmountResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DecreaseAmountResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
 var File_ggsel_product_proto protoreflect.FileDescriptor
 
 const file_ggsel_product_proto_rawDesc = "" +
 	"\n" +
-	"\x13ggsel/product.proto\x12\aproduct\"C\n" +
+	"\x13ggsel/product.proto\x12\aproduct\"[\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x05R\x05price\"@\n" +
+	"\x05price\x18\x03 \x01(\x05R\x05price\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x05R\x06amount\"X\n" +
 	"\x14CreateProductRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x02 \x01(\x05R\x05price\"C\n" +
+	"\x05price\x18\x02 \x01(\x05R\x05price\x12\x16\n" +
+	"\x06amount\x18\x03 \x01(\x05R\x06amount\"C\n" +
 	"\x15CreateProductResponse\x12*\n" +
 	"\aproduct\x18\x01 \x01(\v2\x10.product.ProductR\aproduct\"#\n" +
 	"\x11GetProductRequest\x12\x0e\n" +
@@ -383,12 +505,19 @@ const file_ggsel_product_proto_rawDesc = "" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"D\n" +
 	"\x14ListProductsResponse\x12,\n" +
-	"\bproducts\x18\x01 \x03(\v2\x10.product.ProductR\bproducts2\xf4\x01\n" +
+	"\bproducts\x18\x01 \x03(\v2\x10.product.ProductR\bproducts\"?\n" +
+	"\x15DecreaseAmountRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
+	"\x06amount\x18\x02 \x01(\x05R\x06amount\"H\n" +
+	"\x16DecreaseAmountResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x14\n" +
+	"\x05error\x18\x02 \x01(\tR\x05error2\xc7\x02\n" +
 	"\x0eProductService\x12N\n" +
 	"\rCreateProduct\x12\x1d.product.CreateProductRequest\x1a\x1e.product.CreateProductResponse\x12E\n" +
 	"\n" +
 	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x1b.product.GetProductResponse\x12K\n" +
-	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponseB\x1fZ\x1dstasiska.product.v1;productv1b\x06proto3"
+	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponse\x12Q\n" +
+	"\x0eDecreaseAmount\x12\x1e.product.DecreaseAmountRequest\x1a\x1f.product.DecreaseAmountResponseB\x1fZ\x1dstasiska.product.v1;productv1b\x06proto3"
 
 var (
 	file_ggsel_product_proto_rawDescOnce sync.Once
@@ -402,15 +531,17 @@ func file_ggsel_product_proto_rawDescGZIP() []byte {
 	return file_ggsel_product_proto_rawDescData
 }
 
-var file_ggsel_product_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_ggsel_product_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_ggsel_product_proto_goTypes = []any{
-	(*Product)(nil),               // 0: product.Product
-	(*CreateProductRequest)(nil),  // 1: product.CreateProductRequest
-	(*CreateProductResponse)(nil), // 2: product.CreateProductResponse
-	(*GetProductRequest)(nil),     // 3: product.GetProductRequest
-	(*GetProductResponse)(nil),    // 4: product.GetProductResponse
-	(*ListProductsRequest)(nil),   // 5: product.ListProductsRequest
-	(*ListProductsResponse)(nil),  // 6: product.ListProductsResponse
+	(*Product)(nil),                // 0: product.Product
+	(*CreateProductRequest)(nil),   // 1: product.CreateProductRequest
+	(*CreateProductResponse)(nil),  // 2: product.CreateProductResponse
+	(*GetProductRequest)(nil),      // 3: product.GetProductRequest
+	(*GetProductResponse)(nil),     // 4: product.GetProductResponse
+	(*ListProductsRequest)(nil),    // 5: product.ListProductsRequest
+	(*ListProductsResponse)(nil),   // 6: product.ListProductsResponse
+	(*DecreaseAmountRequest)(nil),  // 7: product.DecreaseAmountRequest
+	(*DecreaseAmountResponse)(nil), // 8: product.DecreaseAmountResponse
 }
 var file_ggsel_product_proto_depIdxs = []int32{
 	0, // 0: product.CreateProductResponse.product:type_name -> product.Product
@@ -419,11 +550,13 @@ var file_ggsel_product_proto_depIdxs = []int32{
 	1, // 3: product.ProductService.CreateProduct:input_type -> product.CreateProductRequest
 	3, // 4: product.ProductService.GetProduct:input_type -> product.GetProductRequest
 	5, // 5: product.ProductService.ListProducts:input_type -> product.ListProductsRequest
-	2, // 6: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
-	4, // 7: product.ProductService.GetProduct:output_type -> product.GetProductResponse
-	6, // 8: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
+	7, // 6: product.ProductService.DecreaseAmount:input_type -> product.DecreaseAmountRequest
+	2, // 7: product.ProductService.CreateProduct:output_type -> product.CreateProductResponse
+	4, // 8: product.ProductService.GetProduct:output_type -> product.GetProductResponse
+	6, // 9: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
+	8, // 10: product.ProductService.DecreaseAmount:output_type -> product.DecreaseAmountResponse
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -440,7 +573,7 @@ func file_ggsel_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ggsel_product_proto_rawDesc), len(file_ggsel_product_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
