@@ -87,6 +87,8 @@ type Order struct {
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Items         []*OrderItem           `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`
 	TotalPrice    int32                  `protobuf:"varint,4,opt,name=total_price,json=totalPrice,proto3" json:"total_price,omitempty"`
+	Status        string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -147,6 +149,20 @@ func (x *Order) GetTotalPrice() int32 {
 		return x.TotalPrice
 	}
 	return 0
+}
+
+func (x *Order) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Order) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
 }
 
 type CreateOrderRequest struct {
@@ -438,13 +454,16 @@ const file_ggsel_order_proto_rawDesc = "" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x14\n" +
 	"\x05count\x18\x02 \x01(\x05R\x05count\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x05R\x05price\"y\n" +
+	"\x05price\x18\x03 \x01(\x05R\x05price\"\xb0\x01\n" +
 	"\x05Order\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12&\n" +
 	"\x05items\x18\x03 \x03(\v2\x10.order.OrderItemR\x05items\x12\x1f\n" +
 	"\vtotal_price\x18\x04 \x01(\x05R\n" +
-	"totalPrice\"U\n" +
+	"totalPrice\x12\x16\n" +
+	"\x06status\x18\x05 \x01(\tR\x06status\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\"U\n" +
 	"\x12CreateOrderRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12&\n" +
 	"\x05items\x18\x02 \x03(\v2\x10.order.OrderItemR\x05items\"9\n" +
