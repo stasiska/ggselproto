@@ -349,7 +349,7 @@ func (x *GetOrderResponse) GetOrder() *Order {
 	return nil
 }
 
-type ListOrdersRequest struct {
+type OrdersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
@@ -357,20 +357,20 @@ type ListOrdersRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListOrdersRequest) Reset() {
-	*x = ListOrdersRequest{}
+func (x *OrdersRequest) Reset() {
+	*x = OrdersRequest{}
 	mi := &file_ggsel_order_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListOrdersRequest) String() string {
+func (x *OrdersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListOrdersRequest) ProtoMessage() {}
+func (*OrdersRequest) ProtoMessage() {}
 
-func (x *ListOrdersRequest) ProtoReflect() protoreflect.Message {
+func (x *OrdersRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_ggsel_order_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -382,46 +382,46 @@ func (x *ListOrdersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListOrdersRequest.ProtoReflect.Descriptor instead.
-func (*ListOrdersRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use OrdersRequest.ProtoReflect.Descriptor instead.
+func (*OrdersRequest) Descriptor() ([]byte, []int) {
 	return file_ggsel_order_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ListOrdersRequest) GetLimit() int32 {
+func (x *OrdersRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *ListOrdersRequest) GetOffset() int32 {
+func (x *OrdersRequest) GetOffset() int32 {
 	if x != nil {
 		return x.Offset
 	}
 	return 0
 }
 
-type ListOrdersResponse struct {
+type OrdersResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Orders        []*Order               `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListOrdersResponse) Reset() {
-	*x = ListOrdersResponse{}
+func (x *OrdersResponse) Reset() {
+	*x = OrdersResponse{}
 	mi := &file_ggsel_order_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListOrdersResponse) String() string {
+func (x *OrdersResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListOrdersResponse) ProtoMessage() {}
+func (*OrdersResponse) ProtoMessage() {}
 
-func (x *ListOrdersResponse) ProtoReflect() protoreflect.Message {
+func (x *OrdersResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_ggsel_order_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -433,12 +433,12 @@ func (x *ListOrdersResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListOrdersResponse.ProtoReflect.Descriptor instead.
-func (*ListOrdersResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use OrdersResponse.ProtoReflect.Descriptor instead.
+func (*OrdersResponse) Descriptor() ([]byte, []int) {
 	return file_ggsel_order_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ListOrdersResponse) GetOrders() []*Order {
+func (x *OrdersResponse) GetOrders() []*Order {
 	if x != nil {
 		return x.Orders
 	}
@@ -472,17 +472,16 @@ const file_ggsel_order_proto_rawDesc = "" +
 	"\x0fGetOrderRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"6\n" +
 	"\x10GetOrderResponse\x12\"\n" +
-	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order\"A\n" +
-	"\x11ListOrdersRequest\x12\x14\n" +
+	"\x05order\x18\x01 \x01(\v2\f.order.OrderR\x05order\"=\n" +
+	"\rOrdersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\":\n" +
-	"\x12ListOrdersResponse\x12$\n" +
-	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders2\xd4\x01\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"6\n" +
+	"\x0eOrdersResponse\x12$\n" +
+	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders2\xcf\x01\n" +
 	"\fOrderService\x12D\n" +
-	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\x12;\n" +
-	"\bGetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponse\x12A\n" +
-	"\n" +
-	"ListOrders\x12\x18.order.ListOrdersRequest\x1a\x19.order.ListOrdersResponseB\x1bZ\x19stasiska.order.v1;orderv1b\x06proto3"
+	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\x12?\n" +
+	"\fGetOrderById\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponse\x128\n" +
+	"\tAllOrders\x12\x14.order.OrdersRequest\x1a\x15.order.OrdersResponseB\x1bZ\x19stasiska.order.v1;orderv1b\x06proto3"
 
 var (
 	file_ggsel_order_proto_rawDescOnce sync.Once
@@ -504,21 +503,21 @@ var file_ggsel_order_proto_goTypes = []any{
 	(*CreateOrderResponse)(nil), // 3: order.CreateOrderResponse
 	(*GetOrderRequest)(nil),     // 4: order.GetOrderRequest
 	(*GetOrderResponse)(nil),    // 5: order.GetOrderResponse
-	(*ListOrdersRequest)(nil),   // 6: order.ListOrdersRequest
-	(*ListOrdersResponse)(nil),  // 7: order.ListOrdersResponse
+	(*OrdersRequest)(nil),       // 6: order.OrdersRequest
+	(*OrdersResponse)(nil),      // 7: order.OrdersResponse
 }
 var file_ggsel_order_proto_depIdxs = []int32{
 	0, // 0: order.Order.items:type_name -> order.OrderItem
 	0, // 1: order.CreateOrderRequest.items:type_name -> order.OrderItem
 	1, // 2: order.CreateOrderResponse.order:type_name -> order.Order
 	1, // 3: order.GetOrderResponse.order:type_name -> order.Order
-	1, // 4: order.ListOrdersResponse.orders:type_name -> order.Order
+	1, // 4: order.OrdersResponse.orders:type_name -> order.Order
 	2, // 5: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
-	4, // 6: order.OrderService.GetOrder:input_type -> order.GetOrderRequest
-	6, // 7: order.OrderService.ListOrders:input_type -> order.ListOrdersRequest
+	4, // 6: order.OrderService.GetOrderById:input_type -> order.GetOrderRequest
+	6, // 7: order.OrderService.AllOrders:input_type -> order.OrdersRequest
 	3, // 8: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
-	5, // 9: order.OrderService.GetOrder:output_type -> order.GetOrderResponse
-	7, // 10: order.OrderService.ListOrders:output_type -> order.ListOrdersResponse
+	5, // 9: order.OrderService.GetOrderById:output_type -> order.GetOrderResponse
+	7, // 10: order.OrderService.AllOrders:output_type -> order.OrdersResponse
 	8, // [8:11] is the sub-list for method output_type
 	5, // [5:8] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name
